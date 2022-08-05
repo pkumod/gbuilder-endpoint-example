@@ -4,7 +4,23 @@
 
 ## Intro
 
-本 repo 提供了一个构建 gBuilder 自定义 endpoint 的最简示例，用于演示如何构建自定义端点服务。通过本 repo 启用的自定义端点服务，可以成功注册至 gBuilder 模型中心（需要端点服务能被公网访问到）。
+本 repo 提供了一个通过 Flask 构建 gBuilder 自定义 endpoint 的最简示例，用于演示如何构建自定义端点服务。通过本 repo 启用的自定义端点服务，可以成功注册至 gBuilder 模型中心（需要端点服务能被公网访问到）。
+
+具体的实现请参照 `app.py` 中的内容，与本文的说明配合理解。
+
+## Usage
+
+1. 安装依赖：
+    ```bash
+    pip install -r requirements.txt
+    ```
+2. 启动服务：
+    ```bash
+    python app.py
+    ```
+3. 将服务地址添加至 gBuilder 模型中心。
+
+> 如果您希望基于本示例直接实现 gBuilder endpoint，请修改 `app.py` 中的 `process` 函数的内容。
 
 ## Interface
 
@@ -110,7 +126,3 @@ curl http://localhost:5050/status
 ### Summary
 
 通过实现上述接口，即可以实现一个能够提供服务的 gBuilder Endpoint，可以在 gBuilder 模型中心中通过填写对应的端点地址，将自定义的端点加入 gBuilder 模型中心，从而在 gBuilder 知识图谱构建 Flowline 中提供服务。
-
-## About This Project
-
-TBD
