@@ -68,7 +68,7 @@ def process(task_id):
     for line in dataset:
         result.append({'entity': ["示例"], 'entity_type': ["示例"], 'data': line['data']})
     # 将处理后的结果保存到文件中
-    open(f'{task_id}_result', 'w').write('\n'.join(map(json.dumps, result)))
+    open(f'{task_id}_result', 'w').write('\n'.join(map(lambda line:json.dumps(line, ensure_ascii=False), result)))
     # 状态回位
     STATUS = AVAILABLE
     RUNNING = None
@@ -92,7 +92,7 @@ def get_task_status(task_id):
     if task_id == RUNNING:
         return jsonify({'status': TASK_RUNNING})
     else:
-        if os.path.exists(f'{task_id}.finished'):  # 本示例中直接用一个文件来标记任务的状态
+        if os.path.exists(f'{task_id}_result'):  # 本示例中直接用一个文件来标记任务的状态
             return jsonify({'status': TASK_FINISHED})
         elif os.path.exists(f'{task_id}.error'):
             return jsonify({'status': TASK_ERROR})
@@ -108,7 +108,7 @@ def get_task_result(task_id):
     :return:
     """
     if os.path.exists(f'{task_id}_result'):
-        return send_from_directory(f'./train_tasks/{task_id}', f'{task_id}_result')
+        return send_from_directory('./', f'{task_id}_result')
     else:
         abort(HTTPStatus.NOT_FOUND)
 
