@@ -84,18 +84,18 @@ def get_task_status(task_id):
     :return:
     """
     global RUNNING
-    RUNNING = 0
-    PENDING = 1  # 本示例只演示了单任务、单进程的端点服务，因此该状态无需使用
-    FINISHED = 2
-    ERROR = 3
+    TASK_RUNNING = 0
+    TASK_PENDING = 1  # 本示例只演示了单任务、单进程的端点服务，因此该状态无需使用
+    TASK_FINISHED = 2
+    TASK_ERROR = 3
     NO_TASK = -1
     if task_id == RUNNING:
-        return jsonify({'status': RUNNING})
+        return jsonify({'status': TASK_RUNNING})
     else:
         if os.path.exists(f'{task_id}.finished'):  # 本示例中直接用一个文件来标记任务的状态
-            return jsonify({'status': FINISHED})
+            return jsonify({'status': TASK_FINISHED})
         elif os.path.exists(f'{task_id}.error'):
-            return jsonify({'status': ERROR})
+            return jsonify({'status': TASK_ERROR})
         else:
             return jsonify({'status': NO_TASK})
 
