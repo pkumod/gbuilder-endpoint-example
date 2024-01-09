@@ -123,6 +123,10 @@ curl http://localhost:5050/status
 
 如果出现错误，会以对应错误码形式返回报错。
 
+### Data Structure
+
+请参考[数据结构](./STRUCT.md)中的内容，制定模型端点的输入输出。
+
 ### Summary
 
 通过实现上述接口，即可以实现一个能够提供服务的 gBuilder Endpoint，可以在 gBuilder 模型中心中通过填写对应的端点地址，将自定义的端点加入 gBuilder 模型中心，从而在 gBuilder 知识图谱构建 Flowline 中提供服务。
